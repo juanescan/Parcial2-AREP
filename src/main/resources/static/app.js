@@ -2,7 +2,7 @@ function loadGetMsg() {
     let list = document.getElementById("list").value;
     let value = document.getElementById("value").value;
     let isLinear = document.getElementById("searchType").checked;
-    let operation = isLinear ? "/math/linearsearch" : "/math/binarysearch";
+    let operation = isLinear ? "/linearsearch" : "/binarysearch";
   
   
   
@@ -11,7 +11,7 @@ function loadGetMsg() {
       .then(data => makeBeautiful(data));
   }
   
-  function makeBeautiful(json) {
+  function showJson(json) {
     let table = '<table border="1">';
     for (let key in json) {
       table += `<tr><td>${key}</td><td>${json[key]}</td></tr>`;
