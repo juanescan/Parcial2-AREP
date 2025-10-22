@@ -30,4 +30,29 @@ public class math {
         return response;
     }
 
+     @GetMapping("/binarysearch")
+    public Map<String, Object> binarySearch(@RequestParam String list, @RequestParam String value) {
+        String[] inputlist = list.split(",");
+        Map<String, Object> response = new HashMap<>();
+        response.put("operation", "binarySearch");
+        response.put("inputlist", list);
+        response.put("value", value);
+
+        int result = recursiveBinarySearch(inputlist, value, 0, inputlist.length - 1);
+        response.put("output", result);
+        return response;
+    }
+
+    private int recursiveBinarySearch(String[] inputlist, String value, int left, int right) {
+        if (right >= left) {
+            int mid = left + (right - left) / 2;
+            if (value.equals(inputlist[mid])) return mid;
+            if (Integer.parseInt(inputlist[mid]) > Integer.parseInt(value)) {
+                return recursiveBinarySearch(inputlist, value, left, mid - 1);
+            }
+            return recursiveBinarySearch(inputlist, value, mid + 1, right);
+        }
+        return -1;
+    }
+
 }
